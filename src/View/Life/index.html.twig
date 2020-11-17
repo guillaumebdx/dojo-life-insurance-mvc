@@ -7,25 +7,38 @@
                 <h1 class="display-4">Simulateur</h1>
                 <p class="lead">Ce simulateur permet d'indiquer la fiscalité lors d'un retrait total sur une assurance vie</p>
                 <hr class="my-4">
-                <p>Remplir le formulaire, le résultat s'affichera en dessous !</p>
+                <p>Simulateur pour prime unique versée avant le 27 septembre 2017</p>
                 <form action="" method="post">
                     <div class="form-group">
-                        <label for="amount">Montant à l'ouverture</label>
-                        <input name="amount" type="number" class="form-control" id="amount" placeholder="Entrer le montant versé à l'ouverture de l'assurance vie">
+                        <label for="open-amount">Montant à l'ouverture</label>
+                        <input name="open-amount" type="number" class="form-control" id="open-amount" placeholder="Entrer le montant versé à l'ouverture de l'assurance vie">
                     </div>
                     <div class="form-group">
-                        <label for="amount">Montant au moment du retrait</label>
-                        <input name="amount" type="number" class="form-control" id="amount" placeholder="Entrer le montant actuel de l'assurance vie">
+                        <label for="withdrawal-amount">Montant au moment du retrait</label>
+                        <input name="withdrawal-amount" type="number" class="form-control" id="withdrawal-amount" placeholder="Entrer le montant actuel de l'assurance vie">
                     </div>
                     <div class="form-group">
                         <label for="duration">Date d'ouverture</label>
                         <input name="open-date" type="date" class="form-control" id="duration">
                     </div>
+                    <div class="form-group">
+                        <label for="tmi">Tranche marginale d'imposition</label>
+                        <select class="form-control" id="tmi" name="tmi">
+                            <option value="0">0%</option>
+                            <option value="11">11%</option>
+                            <option value="30">30%</option>
+                            <option value="41">41%</option>
+                            <option value="45%">45%</option>
+                        </select>
+                    </div>
                     <button class="btn btn-primary btn-lg">Simuler !</button>
                 </form>
             </div>
             <div class="col-6">
-                Durée de détention : 7 ans.
+                <p>
+                    Durée de détention : 7 ans. / Choix de la fiscalité : PFL
+                </p>
+
                 <canvas id="graph"></canvas>
                 <canvas id="graph2"></canvas>
             </div>
@@ -62,20 +75,25 @@
 
         data = {
             datasets: [{
-                data: [9000, 1000],
+                data: [9000, 1000, 500],
                 backgroundColor: [
                     'rgba(255, 205, 86)',
-                    'rgba(54, 162, 235)'],
+                    'rgba(54, 162, 235)',
+                    'rgba(255, 99, 132)',
+                ],
+
                 hoverBackgroundColor: [
                     'rgba(255, 205, 86, 0.7)',
-                    'rgba(54, 162, 235, 0.7)'
+                    'rgba(54, 162, 235, 0.7)',
+                    'rgba(255, 99, 132, 0.7)',
                 ]
             }],
 
             // These labels appear in the legend and in the tooltips when hovering different arcs
             labels: [
                 'Montant net retiré',
-                'Impôts'
+                'Impôts',
+                'Prélèvements sociaux'
             ]
         };
         let ctx2 = document.getElementById('graph2');
