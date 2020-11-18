@@ -19,7 +19,7 @@ class Withdrawal
 
     private $interestBase;
 
-    const SOCIAL_TAX_RATE = 17.2;
+    public const SOCIAL_TAX_RATE = 17.2;
 
 
     public function __construct($lifeInsurance, $tmi)
