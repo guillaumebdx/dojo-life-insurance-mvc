@@ -36,7 +36,7 @@
             </div>
             <div class="col-6">
                 <p>
-                    Durée de détention : 7 ans. / Choix de la fiscalité : PFL
+                    Durée de détention : {{ life_insurance.duration }} ans. / Choix de la fiscalité : {{ withdrawal.taxChoosen }} %
                 </p>
 
                 <canvas id="graph"></canvas>
@@ -50,7 +50,7 @@
     <script>
         data = {
             datasets: [{
-                data: [7000, 3000],
+                data: [{{ life_insurance.openAmount }}, {{ life_insurance.interest }}],
                 backgroundColor: [
                     'rgba(255, 205, 86)',
                     'rgba(255, 99, 132)'],
@@ -75,7 +75,7 @@
 
         data = {
             datasets: [{
-                data: [9000, 1000, 500],
+                data: [{{ life_insurance.withdrawalAmount -  withdrawal.taxAmount -  withdrawal.socialTaxAmount  }}, {{ withdrawal.taxAmount }}, {{ withdrawal.socialTaxAmount }}],
                 backgroundColor: [
                     'rgba(255, 205, 86)',
                     'rgba(54, 162, 235)',
